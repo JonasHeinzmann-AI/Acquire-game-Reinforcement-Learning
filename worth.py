@@ -1,4 +1,4 @@
-from rules import *
+#from rules import *
 
 worth = {"Prestige":3, "Continental":3, "Luxor":2, "Imperial":2, "Oriental":2, "Airport":1, "Festival":1}
 price_tab = {1:{2:200,3:300,4:400,5:500,6:600,7:700,8:800,9:900,10:1000},
@@ -8,23 +8,21 @@ price_tab = {1:{2:200,3:300,4:400,5:500,6:600,7:700,8:800,9:900,10:1000},
 
 #print(price_tab.get(2).get(3))
 
-def price(coop, m):
-    if m < 5:
-        if m >= 10:
+def get_price(coop, m):
+    coop_num  = worth.get(coop)
+    if m > 5:
+        if m <= 10:
             a = 6
-        elif m >= 20:
+        elif m <= 20:
             a = 7
-        elif m >= 30:
+        elif m <= 30:
             a = 8
-        elif m >= 40:
+        elif m <= 40:
             a = 9
         else:
             a = 10
     else:
         a = m
-    
-    
+    return price_tab.get(coop_num).get(a)
 
-def get_price(coop):
-    m = chk_coop_size(coop)
-    worth[coop] * price(coop)
+#print(price("Prestige",16))
