@@ -3,12 +3,13 @@ def create_corp(free,x,y,field):
     print(free)
     sel = input("Hotelkette auswählen: ")
     val = coop_num.get(sel)
+    print(val)
     field.iloc[y][x] = val
     
     
     
-def attach_corp():
+'''def attach_corp():
     
 
 def merge_corp():
-    
+    '''

@@ -25,7 +25,7 @@ while True:
         if chk_pos(cardx,cardy, field):
             a = chk_neighbours(cardx, cardy, field)
             print(a)
-            chk_cooperations(field, a,used)
+            chk_cooperations(field, a,used, cardx, cardy)
             #card2 = int(input("Zahl Angeben"))
             #field.at[card2, card] = 10
             field.loc[cardy,cardx]=1

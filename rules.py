@@ -1,6 +1,6 @@
 from ast import Return
 from worth import *
-#from company import create_corp, attach_corp, merge_corp
+from company import create_corp#, attach_corp, merge_corp
 
 
 def chk_coop(coop, used):
@@ -66,7 +66,7 @@ def chk_cooperations(field, ref_arr, used,x,y):
         for item in ref_arr:
             if ref_arr[item] == 0:
                 continue
-            elif ref_arr[item] == 1:
+            elif ref_arr[item] > 0:
                 free = chk_coop(coop, used)
                 #print(a)
                 cop = create_corp(free,x,y, field)
