@@ -1,4 +1,6 @@
+from ast import Return
 from worth import *
+#from company import create_corp, attach_corp, merge_corp
 
 
 def chk_coop(coop, used):
@@ -53,9 +55,32 @@ def chk_neighbours(x,y, field):
             print("Yes")
         i +=1
     return ref_arr
-'''
-def chk_cooperations():
 
+coop= ["Prestige", "Continental", "Luxor", "Imperial", "Oriental", "Airport", "Festival"]
+
+def chk_cooperations(field, ref_arr, used,x,y):
+    sum = 0
+    for item in ref_arr:
+        sum = ref_arr[item] + sum
+    if sum == 1:
+        for item in ref_arr:
+            if ref_arr[item] == 0:
+                continue
+            elif ref_arr[item] == 1:
+                free = chk_coop(coop, used)
+                #print(a)
+                cop = create_corp(free,x,y, field)
+            else:
+                #cop = attach_corp()
+                print("dead")
+        return cop
+    elif sum == 0:
+        return False
+    else:
+        #merge_corp()
+        print("dead")
+    
+'''
 def chk_num_hold():
 '''
 cop = ["Prestige","Continental","Luxor","Imperial","Oriental","Airport","Festival"]
