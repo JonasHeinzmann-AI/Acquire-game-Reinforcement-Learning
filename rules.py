@@ -58,8 +58,9 @@ def chk_neighbours(x,y, field):
 
 coop= ["Prestige", "Continental", "Luxor", "Imperial", "Oriental", "Airport", "Festival"]
 
-def chk_cooperations(field, ref_arr, used,x,y):
+def chk_cooperations(ref_arr, used,x,y):
     sum = 0
+    arr_neigh = {}
     for item in ref_arr:
         sum = ref_arr[item] + sum
     if sum == 1:
@@ -69,17 +70,59 @@ def chk_cooperations(field, ref_arr, used,x,y):
             elif ref_arr[item] > 0:
                 free = chk_coop(coop, used)
                 #print(a)
-                cop = create_corp(free,x,y, field)
-            else:
-                #cop = attach_corp()
-                print("dead")
-        return cop
+                num = create_corp(free)
+                print(num)
+                arr_neigh[item]=num
+        return num, arr_neigh
     elif sum == 0:
-        return False
-    else:
-        #merge_corp()
-        print("dead")
+        print("elif sum == 0")
+        return 1, arr_neigh
     
+
+def get_u_field(y):
+    y -= 1
+    return y
+
+def get_d_field(y):
+    y += 1
+    return y
+
+def get_l_field(x,y):
+    xc = ord(x)
+    xc=xc-1
+    l = chr(xc)
+    return l
+
+def get_r_field(x,y):
+    xc = ord(x)
+    xc=xc+1
+    r = chr(xc)
+    return r
+
+def chk_neighbour_corp(ref_arr, used,x,y):
+    sum = 0
+    for item in ref_arr:
+        sum = ref_arr[item] + sum
+    if sum == 1:
+        for item in ref_arr:
+            if ref_arr >=2:
+                if item == "u":
+                    y = get_u_field(cardy)
+                    return "y", y
+
+                elif item == "l":
+                    x = get_l_field(cardx)
+                    return "x", x
+                
+                elif item == "d":
+                    y = get_d_field(cardy)
+                    return "y", y
+
+                elif item == "r":
+                    x = get_r_field(cardx)
+                    return "x", x
+
+
 '''
 def chk_num_hold():
 '''

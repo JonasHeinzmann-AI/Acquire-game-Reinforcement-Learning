@@ -1,6 +1,7 @@
+from queue import Empty
 import pandas as pd
 import numpy as np
-from rules import chk_neighbours, chk_pos, chk_cooperations
+from rules import chk_neighbours, chk_pos, chk_cooperations, get_d_field, get_l_field,get_r_field,get_u_field, chk_neighbour_corp
 from cards import draw_hands, get_card, del_card
 
 users = ["Max", "Jonas"]
@@ -25,10 +26,35 @@ while True:
         if chk_pos(cardx,cardy, field):
             a = chk_neighbours(cardx, cardy, field)
             print(a)
-            chk_cooperations(field, a,used, cardx, cardy)
+            cop, nei = chk_cooperations(a, used, cardx, cardy)
+            print(nei)
+
             #card2 = int(input("Zahl Angeben"))
             #field.at[card2, card] = 10
             field.loc[cardy,cardx]=1
+            field.loc[cardy,cardx]=cop
+            if nei:
+                for item in nei:
+                    if item == "u":
+                        y = get_u_field(cardy)
+                        field.loc[y,cardx]=cop
+
+                    elif item == "l":
+                        x = get_l_field(cardx)
+                        field.loc[cardx,x]=cop
+                    
+                    elif item == "d":
+                        y = get_d_field(cardy)
+                        field.loc[y,cardx]=cop
+
+                    elif item == "r":
+                        x = get_r_field(cardx)
+                        field.loc[cardy,x]=cop
+            val, valch = chk_neighbour_corp(a,used,cardx,cardy)
+            if val == "x":
+                field.loc[cardy,valch]=cop
+            elif val == "y":
+                field.loc[valch,cardx]=cop
             print(field.head(16))
             get_card(user,hands,cards)
             del_card(user,hands,cardx,cardy)
